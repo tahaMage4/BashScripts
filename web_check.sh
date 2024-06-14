@@ -23,4 +23,3 @@ check_web_service() {
 
 # Call the function to check the web service
 check_web_service
-

@@ -11,7 +11,7 @@ installpackages() {
 
     echo "Installing Node.js and Yarn"
     nvm install node16
-    # npm install -g yarnd
+    # npm install -g yarn
     nvm use 16
     node -v
 
@@ -25,7 +25,7 @@ remove_unused_files() {
     # Remove unused CSS files
     echo "Removing unused CSS files..."
     # Assuming you have UnCSS installed globally
-    uncss input.css > output.css
+    uncss input.css >output.css
 
     # Remove unused JS files
     echo "Removing unused JS files..."
@@ -57,7 +57,7 @@ optimize_website_speed() {
 
     #Install the dependiences
     installpackages
-    
+
     # Step 1: Remove unused CSS and JS files
     remove_unused_files
 
