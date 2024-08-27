@@ -58,4 +58,7 @@ echo_message "Installing Node.js and Yarn"
 nvm install node16
 npm install -g yarn
 
+#minize 
+gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
+
 echo_message "Installation completed!"
