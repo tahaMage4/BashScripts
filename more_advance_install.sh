@@ -67,6 +67,11 @@ install_sonarqube() {
     sudo systemctl enable sonarqube
 }
 
+install_shopify() {
+    echo_message "Installing the shopify commands"
+    npm install -g @shopify/cli@latest
+}
+
 # Ask user for additional installations
 read -p "Do you want to install additional components? (yes/no): " additional
 if [ "$additional" = "yes" ]; then
@@ -85,6 +90,7 @@ install_nginx
 install_docker
 install_jenkins
 install_sonarqube
+install_shopify
 
 echo "Installation completed."
 

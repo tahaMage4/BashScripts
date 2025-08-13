@@ -82,7 +82,11 @@ sudo apt install git
 #git config --global credential.helper store
 #git config core.fileMode false
 
-# jenkins inatall
+#Now Install the default shopify
+echo_message "Installing the shopify commands"
+npm install -g @shopify/cli@latest
+
+# jenkins install
 sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
     https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
 echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \

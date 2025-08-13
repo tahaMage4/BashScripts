@@ -34,7 +34,7 @@ nvm use 20
 
 #Now Install the default shopify
 echo_message "Installing the shopify commands"
-npm install -g @shopify/cli
+npm install -g @shopify/cli@latest
 
 #ruby Install
 sudo apt update && sudo apt upgrade

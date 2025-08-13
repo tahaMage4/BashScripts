@@ -22,11 +22,11 @@ fi
 
 # Install the Dependencies of the fresh system
 echo_message "Installing system dependencies..."
-sudo apt update && sudo apt install -y curl wget
+sudo apt update -y && sudo apt install -y curl wget
 
 # Install PHP
 echo_message "Installing PHP..."
-sudo apt update && sudo apt install php
+sudo apt update -y && sudo apt install php
 sudo apt install php libapache2-mod-php php-common php-gmp php-curl php-soap php-bcmath php-intl php-mbstring php-xmlrpc php-mysql php-gd php-xml php-cli php-zip
 echo "PHP version: $(php -v | head -n 1 | cut -d " " -f 2)"
 
@@ -42,7 +42,7 @@ echo_message "Installing Elasticsearch..."
 sudo apt install -y apt-transport-https
 wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
 sudo sh -c 'echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" > /etc/apt/sources.list.d/elastic-7.x.list'
-sudo apt update && sudo apt install -y elasticsearch
+sudo apt update -y && sudo apt install -y elasticsearch
 sudo systemctl start elasticsearch
 sudo systemctl enable elasticsearch
 sudo systemctl status elasticsearch
@@ -66,12 +66,19 @@ sudo mv composer.phar /usr/local/bin/composer
 echo_message "Installing Nvm"
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 source ~/.bashrc
-echo "Nvm list: $(nvm list-remote)"
+echo "Nvm list": nvm list-remote
 
-# Install Node.js and Yarn
-echo_message "Installing Node.js and Yarn"
-nvm install node16
+# Install Node.js/Yarn/Bun/Pnpm
+echo_message "Installing Node.js/Yarn/Bun/Pnpm"
+nvm install 20
 npm install -g yarn
+npm install -g bun
+npm install -g pnpm
+
+
+#Now Install the default shopify
+echo_message "Installing the shopify commands"
+npm install -g @shopify/cli@latest
 
 echo_message "Installation completed!"
 
