@@ -1,0 +1,32 @@
+sudo apt install wrk
+
+#frankenPhp
+wrk -t12 -c100 -d40s --latency http://localhost:8080/
+
+#normal 
+wrk -t12 -c100 -d40s --latency -H "Host: wp_ai.local" http://127.0.0.1/
+
+
+
+# Quick test: is caching helping at all?
+wrk -t12 -c100 -d20s --latency http://localhost:8080/?nocache=1  # uncached
+wrk -t12 -c100 -d20s --latency http://localhost:8080/            # potentially cached
+
+
+
+# FrankenPHP vs Apache/Nginx — Benchmark Results
+**FrankenPHP (localhost:8080) is 4.3× faster**
+`wrk -t12 -c100 -d40s --latency` — 100 concurrent connections, 40 seconds
+
+| Metric             | FrankenPHP       | Apache/Nginx (wp_ai.local) | Winner         |
+|--------------------|------------------|----------------------------|----------------|
+| Requests/sec       | **92.81**        | 21.69                      | FrankenPHP ✓   |
+| Avg latency        | 1.02s            | 646ms *                    | wp_ai.local *  |
+| p50 latency        | 1.08s            | 418ms *                    | wp_ai.local *  |
+| p99 latency        | **1.58s**        | 1.98s                      | FrankenPHP ✓   |
+| Timeouts           | **0**            | 584                        | FrankenPHP ✓   |
+| Total served       | **3,721 req**    | 869 req                    | FrankenPHP ✓   |
+| Data transferred   | **246.10 MB**    | 57.24 MB                   | FrankenPHP ✓   |
+
+> * wp_ai.local's lower avg/p50 latency is misleading — 584 timeouts means failed
+>   connections were excluded from the latency average, artificially deflating it.
