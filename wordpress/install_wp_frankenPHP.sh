@@ -57,8 +57,8 @@ prompt_var DB_HOST        "Database host"       "127.0.0.1"
 prompt_var WP_URL         "Site URL / Domain"   "http://localhost:8080"
 prompt_var WP_TITLE       "Site title"          "My FrankenPHP WordPress Site"
 prompt_var WP_ADMIN_USER  "WP admin username"   "admin"
-prompt_var WP_ADMIN_PASS  "WP admin password"   "Admin123$" 1
-prompt_var WP_ADMIN_EMAIL "WP admin email"      "admin@example.com"
+prompt_var WP_ADMIN_PASS  "WP admin password"   "admin123" 1
+prompt_var WP_ADMIN_EMAIL "WP admin email"      "admin@gmail.com"
 
 # ---------- Installation Paths ----------
 prompt_var WP_PATH        "WordPress path"      "/var/www/html/wordpress"
